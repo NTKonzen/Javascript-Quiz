@@ -13,7 +13,7 @@ const startButton = document.querySelector('#startButton')
 const timeDisplay = document.querySelector('#timeDisplaySpan');
 const viewHighScores = document.querySelector('#viewHighScores');
 const initialsInput = document.querySelector('#initialsInput')
-const highScores = document.querySelector('#highScores')
+const highScoresScreen = document.querySelector('#highScores')
 const highScoresTable = document.querySelector('#highScoresTable')
 
 const submitButton = document.querySelector('#submitButton');
@@ -28,14 +28,25 @@ let score;
 let onQuestion;
 let currentScreen = startScreen;
 
+let highScoresObj = {}
+
+if (JSON.parse(localStorage.getItem('highScores')) !== null) {
+    highScoresObj = JSON.parse(localStorage.getItem('highScores'));
+};
+
 function toggle(screenName) {
 
 
-    if (screenName === endScreen || screenName === highScores) {
+    if (screenName === endScreen || screenName === highScoresScreen) {
         finished = true;
+        initialsInput.value = ''
     }
 
-    if (getComputedStyle(screenName).display === 'block' && screenName !== highScores) {
+    if (screenName === startScreen) {
+        timeDisplay.textContent = '75';
+    }
+
+    if (getComputedStyle(screenName).display === 'block' && screenName !== highScoresScreen) {
         console.log(screenName.id + ' is already displayed')
     } else if (getComputedStyle(screenName).display === 'none') {
 
@@ -45,7 +56,7 @@ function toggle(screenName) {
 
         startScreen.style.display = 'none';
         endScreen.style.display = 'none';
-        highScores.style.display = 'none';
+        highScoresScreen.style.display = 'none';
 
         screenName.style.display = 'block';
         console.log('Displaying ' + screenName.id);
@@ -53,19 +64,29 @@ function toggle(screenName) {
 
     }
 
-    if (localStorage.key(0) !== null) {
-        if (screenName === highScores) {
-            highScoresTable.innerHTML =
-                '<tr> <td>' + localStorage.key(0) + '</td><td>' + localStorage.getItem('NK') + '</td> </tr>'
-        }
-    } else {
-        if (screenName === highScores) {
-            highScoresTable.innerHTML = ''
+    if (screenName === highScoresScreen) {
+        localStorage.setItem('highScores', JSON.stringify(highScoresObj));
+
+        highScoresTable.innerHTML = ''
+
+        for (let key in highScoresObj) {
+            let newRow = document.createElement('tr');
+            let initialsData = document.createElement('td');
+            let scoreData = document.createElement('td');
+
+            initialsData.textContent = key;
+
+            scoreData.textContent = highScoresObj[key]
+
+            highScoresTable.appendChild(newRow);
+            newRow.appendChild(initialsData);
+            newRow.appendChild(scoreData);
         }
     }
-
-
 }
+
+
+
 
 function startTimer() {
     secondsLeft = 75;
@@ -172,6 +193,8 @@ function nextQuestion(status) {
         }
 
     }
+    // End of wrongDisplay();
+
 
     if (status === 'wrong') {
         wrongDisplay();
@@ -179,31 +202,6 @@ function nextQuestion(status) {
         correctDisplay();
     }
 
-    // End of wrongDisplay();
-
-
-    // if (questions[onQuestion] !== undefined) {
-
-    //     let buttons = questions[onQuestion].getElementsByClassName('option');
-
-    //     for (b = 0; b < buttons.length; b++) {
-    //         buttons[b].addEventListener('click', function (event) {
-    //             event.stopPropagation();
-    //             if (event.target.classList.contains('correct')) {
-    //                 correctDisplay();
-    //             } else if (event.target.classList.contains('wrong')) {
-    //                 wrongDisplay();
-    //             }
-    //         })
-    //         if (questions[onQuestion + 1] !== undefined) {
-    //             buttons[b].addEventListener('click', nextQuestion)
-    //         } else {
-    //             buttons[b].addEventListener('click', function () {
-    //                 toggle(endScreen);
-    //             })
-    //         }
-    //     };
-    // };
 }
 // End of nextQuestion;
 
@@ -230,13 +228,28 @@ viewHighScores.addEventListener('click', function (event) {
 submitButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
-    localStorage.setItem(initialsInput.value, score)
-    toggle(highScores);
+
+    if (highScoresObj[initialsInput.value] === undefined) {
+        highScoresObj[(initialsInput.value).toUpperCase()] = score;
+        toggle(highScores);
+    } else if (highScoresObj[initialsInput.value] !== undefined) {
+        let differentName = document.createElement('h5');
+        differentName.textContent = 'This name has already been claimed! Try entering a new one!'
+        differentName.setAttribute('class', 'wrongDisplay');
+
+        endScreen.append(differentName);
+
+        setTimeout(function () {
+            document.querySelector('.wrongDisplay').remove();
+        }, 4000)
+    }
+
 })
 
 goBackButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+
     toggle(startScreen);
     secondsLeft = 75;
 })
@@ -245,6 +258,7 @@ clearHighScoresButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
     localStorage.clear();
+    highScoresObj = {}
     toggle(highScores);
 })
 
