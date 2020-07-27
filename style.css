@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+#viewHighScores {
+    position: fixed;
+    top: 5px;
+    left: 10px;
+    color: #04396B;
+}
+
+#viewHighScores:hover {
+    color: #025B95;
+    text-decoration: none;
+}
+
+#timeDisplay {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+}
+
+.header{
+    height: 10vh;
+}
+
+.col-6 {
+    /* background-color: lightBlue; */
+    min-height: 25vh;
+}
+
+#startScreen {
+    text-align: center;
+}
+
+#startScreen h2 {
+    text-align: center;
+    color: #021f4b;
+    font-weight: 700;
+    margin-bottom: 2.5vh;
+}
+
+#startScreen p {
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: .03em;
+    margin-bottom: 5vh;
+}
+
+.btn {
+    background-color: #6396B0;
+    font-weight: 600;
+    color: #011128;
+}
+
+.btn:hover {
+    box-shadow: inset 15px 15px 15px -19px rgba(0,0,0,0.3);
+}
+
+#questionOneScreen {
+    display: none;
+}
+
+#questionTwoScreen {
+    display: none;
+}
+
+#questionThreeScreen {
+    display: none;
+}
+
+#endScreen {
+    display: none;
+}
+
+#highScores {
+    display: none;
+}
+
+hr {
+    border-width: 2px;
+}
+
+.correctDisplay {
+    color: green;
+}
+
+.wrongDisplay {
+    color: red;
+}
+
+h3 {
+    font-weight: 700;
+    color: #021f4b;
+    line-height: 1.1em;
+}
+
+h5 {
+    margin-bottom: .6em;
+    color: black;
+    font-weight: 600;
+}
+
+.question .btn {
+    padding: 0 1vw;
+}
+
+#endScreen .btn {
+    padding: 0 1vw;
+    margin: auto auto;
+}
+
+
+
+/* .test {
+    height: 20vh;
+    background-color: lightBlue;
+} */

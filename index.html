@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Quiz</title>
+
+    <!-- Link to Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <!-- Link to personal CSS file -->
+    <link href='./style.css' rel='stylesheet'>
+</head>
+
+<body>
+    <header class="container-fluid header">
+        <div class="row">
+            <a href=''>
+                <h5 id='viewHighScores'>View High Scores</h5>
+            </a>
+            <h5 id='timeDisplay'>Time: <span id='timeDisplaySpan'>00</span></h5>
+        </div>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-3 test"></div>
+            <div class="col-6" id='startScreen'>
+                <h2>Coding Quiz Challenge</h2>
+                <p>Try to answer the following questions as quickly and accurately as possible! Click 'Begin Quiz' to
+                    start!</p>
+                <button class="btn" id='startButton'>Begin Quiz</button>
+            </div>
+            <div class="col-6 question" id='questionOneScreen'>
+                <h3>What is one way to declare a variable?</h3>
+                <h5></h5>
+                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. var</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>2. if</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. can</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. then</button>
+                <hr>
+            </div>
+            <div class="col-6 question" id='questionTwoScreen'>
+                <h3>What goes inside the parentheses of a function?</h3>
+                <h5>function( _______ )</h5>
+                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. parameters</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>2. if-statements</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. css links</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. dragons</button>
+                <hr>
+            </div>
+            <div class="col-6 question" id='questionThreeScreen'>
+                <h3>Array value are container within which notation?</h3>
+                <h5></h5>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>1. Curly Brackets</button><br>
+                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>2. Square Brackets</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. Parentheses</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. Greater Then and Less Then Symbols</button>
+                <hr>
+            </div>
+            <div class="col-6" id='endScreen'>
+                <h3 class='mb-4'>All done! Thanks for playing!</h3>
+                <form>
+                    <label class='font-weight-bold' for='initialsInput'>Enter initials: </label>
+                    <input id='initialsInput' placeholder='Enter initials here'>
+                    <button class='btn mb-1' id='submitButton'>Submit</button>
+                </form>
+                <hr>
+            </div>
+            <div id='highScores' class='col-6'>
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th scope='col'>Initials</th>
+                            <th scope='col'>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id='highScoresTable'></tbody>
+                </table>
+                <button id='goBack' class='btn'>Go Back</button>
+                <button id='clearHighScores' class='btn float-right'>Clear High Scores</button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Link to local Javscript file -->
+    <script src='./script.js'></script>
+</body>
+
+</html>
