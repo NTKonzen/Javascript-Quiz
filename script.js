@@ -1,4 +1,5 @@
 const startScreen = document.querySelector('#startScreen')
+const gameOverScreen = document.querySelector('#gameOverScreen')
 const endScreen = document.querySelector('#endScreen')
 
 // grab each question by using questions[i]
@@ -8,6 +9,7 @@ const questions = document.getElementsByClassName('question');
 const questionOne = document.querySelector('#questionOneScreen')
 const questionTwo = document.querySelector('#questionTwoScreen')
 const questionThree = document.querySelector('#questionThreeScreen')
+const questionFour = document.querySelector('#questionFourScreen')
 const startButton = document.querySelector('#startButton')
 
 const timeDisplay = document.querySelector('#timeDisplaySpan');
@@ -16,6 +18,7 @@ const initialsInput = document.querySelector('#initialsInput')
 const highScoresScreen = document.querySelector('#highScores')
 const highScoresTable = document.querySelector('#highScoresTable')
 
+const tryAgainButton = document.querySelector('#tryAgainButton')
 const submitButton = document.querySelector('#submitButton');
 const goBackButton = document.querySelector('#goBack');
 const clearHighScoresButton = document.querySelector('#clearHighScores')
@@ -55,6 +58,7 @@ function toggle(screenName) {
         }
 
         startScreen.style.display = 'none';
+        gameOverScreen.style.display = 'none';
         endScreen.style.display = 'none';
         highScoresScreen.style.display = 'none';
 
@@ -97,9 +101,12 @@ function startTimer() {
                 timeDisplaySpan.textContent = secondsLeft;
             } else {
                 secondsLeft--;
+                if (secondsLeft < 0) {
+                    secondsLeft = 0;
+                }
                 timeDisplaySpan.textContent = secondsLeft;
                 clearInterval(timer);
-                toggle(endScreen);
+                toggle(gameOverScreen);
             }
         } else {
             clearInterval(timer);
@@ -166,6 +173,14 @@ function nextQuestion(status) {
 
             console.log('wrong');
 
+            secondsLeft = secondsLeft - 10;
+
+            if (secondsLeft < 0) {
+                secondsLeft = 0;
+            }
+
+            timeDisplaySpan.textContent = secondsLeft;
+
             let wrongDisplayEl = document.createElement('h5');
             wrongDisplayEl.textContent = 'Wrong!'
             wrongDisplayEl.setAttribute('class', 'wrongDisplay');
@@ -179,6 +194,10 @@ function nextQuestion(status) {
         } else {
 
             console.log('wrong');
+
+            secondsLeft = secondsLeft - 10;
+
+            timeDisplaySpan.textContent = secondsLeft;
 
             let wrongDisplayEl = document.createElement('h5');
             wrongDisplayEl.textContent = 'Wrong!'
@@ -247,6 +266,14 @@ submitButton.addEventListener('click', function (event) {
 })
 
 goBackButton.addEventListener('click', function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    toggle(startScreen);
+    secondsLeft = 75;
+})
+
+tryAgainButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
 

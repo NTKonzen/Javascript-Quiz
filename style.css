@@ -58,26 +58,6 @@
     box-shadow: inset 15px 15px 15px -19px rgba(0,0,0,0.3);
 }
 
-#questionOneScreen {
-    display: none;
-}
-
-#questionTwoScreen {
-    display: none;
-}
-
-#questionThreeScreen {
-    display: none;
-}
-
-#endScreen {
-    display: none;
-}
-
-#highScores {
-    display: none;
-}
-
 hr {
     border-width: 2px;
 }
@@ -102,6 +82,10 @@ h5 {
     font-weight: 600;
 }
 
+#gameOverScreen h3 {
+    color: rgb(207, 8, 8);
+}
+
 .question .btn {
     padding: 0 1vw;
 }
@@ -110,10 +94,3 @@ h5 {
     padding: 0 1vw;
     margin: auto auto;
 }
-
-
-
-/* .test {
-    height: 20vh;
-    background-color: lightBlue;
-} */

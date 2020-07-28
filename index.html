@@ -32,7 +32,7 @@
                     start!</p>
                 <button class="btn" id='startButton'>Begin Quiz</button>
             </div>
-            <div class="col-6 question" id='questionOneScreen'>
+            <div class="col-6 question" id='questionOneScreen' style='display: none'>
                 <h3>What is one way to declare a variable?</h3>
                 <h5></h5>
                 <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. var</button><br>
@@ -41,7 +41,7 @@
                 <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. then</button>
                 <hr>
             </div>
-            <div class="col-6 question" id='questionTwoScreen'>
+            <div class="col-6 question" id='questionTwoScreen' style='display: none'>
                 <h3>What goes inside the parentheses of a function?</h3>
                 <h5>function( _______ )</h5>
                 <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. parameters</button><br>
@@ -50,7 +50,7 @@
                 <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. dragons</button>
                 <hr>
             </div>
-            <div class="col-6 question" id='questionThreeScreen'>
+            <div class="col-6 question" id='questionThreeScreen' style='display: none'>
                 <h3>Array value are container within which notation?</h3>
                 <h5></h5>
                 <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>1. Curly Brackets</button><br>
@@ -59,16 +59,39 @@
                 <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. Greater Then and Less Then Symbols</button>
                 <hr>
             </div>
-            <div class="col-6" id='endScreen'>
+            <div class="col-6 question" id='questionFourScreen' style='display: none'>
+                <h3>Strings are contained within:</h3>
+                <h5>________.</h5>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. spaces</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. numbers</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("correct")'>3. quotation marks</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>4. brackets</button>
+                <hr>
+            </div>
+            <div class="col-6 question" id='questionFourScreen' style='display: none'>
+                <h3>What do you call variables that may contain keys and methods?</h3>
+                <h5></h5>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. Arrays</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. constants</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>3. "let"s</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("correct")'>4. Objects</button>
+                <hr>
+            </div>
+            <div class="col-6" id='endScreen' style='display: none'>
                 <h3 class='mb-4'>All done! Thanks for playing!</h3>
                 <form>
                     <label class='font-weight-bold' for='initialsInput'>Enter initials: </label>
-                    <input id='initialsInput' maxlength = '5' placeholder='Enter initials here'>
+                    <input id='initialsInput' maxlength = '3' placeholder='Enter initials here'>
                     <button class='btn mb-1' id='submitButton'>Submit</button>
                 </form>
                 <hr>
             </div>
-            <div id='highScores' class='col-6'>
+            <div class="col-6 text-center" id='gameOverScreen' style='display: none'>
+                <h3 class='mb-4'>Looks like you ran out of time!</h3>
+                <button class='btn mb-1' id='tryAgainButton'>Try again?</button>
+                <hr>
+            </div>
+            <div id='highScores' class='col-6' style='display: none'>
                 <table class='table'>
                     <thead>
                         <tr>
