@@ -1,27 +1,21 @@
-const startScreen = document.querySelector('#startScreen')
-const gameOverScreen = document.querySelector('#gameOverScreen')
-const endScreen = document.querySelector('#endScreen')
+const startScreen = document.querySelector('#startScreen');
+const gameOverScreen = document.querySelector('#gameOverScreen');
+const endScreen = document.querySelector('#endScreen');
 
 // grab each question by using questions[i]
 const questions = document.getElementsByClassName('question');
 
-// variables for each question - testing purposes only
-const questionOne = document.querySelector('#questionOneScreen')
-const questionTwo = document.querySelector('#questionTwoScreen')
-const questionThree = document.querySelector('#questionThreeScreen')
-const questionFour = document.querySelector('#questionFourScreen')
-const startButton = document.querySelector('#startButton')
-
 const timeDisplay = document.querySelector('#timeDisplaySpan');
 const viewHighScores = document.querySelector('#viewHighScores');
-const initialsInput = document.querySelector('#initialsInput')
-const highScoresScreen = document.querySelector('#highScores')
-const highScoresTable = document.querySelector('#highScoresTable')
+const initialsInput = document.querySelector('#initialsInput');
+const highScoresScreen = document.querySelector('#highScores');
+const highScoresTable = document.querySelector('#highScoresTable');
 
-const tryAgainButton = document.querySelector('#tryAgainButton')
+const startButton = document.querySelector('#startButton');
+const tryAgainButton = document.querySelector('#tryAgainButton');
 const submitButton = document.querySelector('#submitButton');
 const goBackButton = document.querySelector('#goBack');
-const clearHighScoresButton = document.querySelector('#clearHighScores')
+const clearHighScoresButton = document.querySelector('#clearHighScores');
 
 let secondsLeft = 75;
 
@@ -69,6 +63,23 @@ function toggle(screenName) {
     }
 
     if (screenName === highScoresScreen) {
+
+        let highScoresArray = Object.values(highScoresObj).sort(function(a,b){
+            return b-a;
+        });
+
+        let newObjFunc = (object, value) => {
+            return Object.keys(object).find(key => object[key] === value)
+        }
+
+        let newObj = {};
+
+        highScoresArray.forEach(value => {
+            newObj[newObjFunc(highScoresObj, value)] = value;
+        })
+        
+        highScoresObj = newObj;
+
         localStorage.setItem('highScores', JSON.stringify(highScoresObj));
 
         highScoresTable.innerHTML = ''
@@ -88,8 +99,6 @@ function toggle(screenName) {
         }
     }
 }
-
-
 
 
 function startTimer() {
@@ -122,13 +131,6 @@ function startTimer() {
 function nextQuestion(status) {
 
     onQuestion++;
-
-    if (questions[onQuestion] !== undefined) {
-        toggle(questions[onQuestion]);
-    } else if (questions[onQuestion] === undefined) {
-        toggle(endScreen)
-    }
-
 
     // Beginning of correctDisplay()
     function correctDisplay() {
@@ -173,7 +175,7 @@ function nextQuestion(status) {
 
             console.log('wrong');
 
-            secondsLeft = secondsLeft - 10;
+            secondsLeft = secondsLeft - Math.floor(75 / questions.length);
 
             if (secondsLeft < 0) {
                 secondsLeft = 0;
@@ -195,7 +197,11 @@ function nextQuestion(status) {
 
             console.log('wrong');
 
-            secondsLeft = secondsLeft - 10;
+            secondsLeft = secondsLeft - Math.floor(75 / questions.length);
+
+            if (secondsLeft < 0) {
+                secondsLeft = 0;
+            }
 
             timeDisplaySpan.textContent = secondsLeft;
 
@@ -221,6 +227,14 @@ function nextQuestion(status) {
         correctDisplay();
     }
 
+    if (questions[onQuestion] !== undefined) {
+        toggle(questions[onQuestion]);
+    } else if (questions[onQuestion] === undefined && secondsLeft !== 0) {
+        toggle(endScreen)
+    } else {
+        toggle(gameOverScreen)
+    }
+
 }
 // End of nextQuestion;
 
@@ -234,19 +248,36 @@ function startQuiz() {
 
     nextQuestion();
 
-}
+};
 
-startButton.addEventListener('click', startQuiz)
+startButton.addEventListener('click', startQuiz);
 
 viewHighScores.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
-    toggle(highScores)
-})
+
+    if (currentScreen === startScreen || currentScreen === 'endScreen' || currentScreen === 'gameOverScreen') {
+        toggle(highScores);
+    }
+});
 
 submitButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+
+    console.log(initialsInput.value);
+    
+
+    if (initialsInput.value === '') {
+        let enterSomething = document.createElement('h5');
+        enterSomething.textContent = 'Your initials cannot be blank!'
+        enterSomething.setAttribute('class', 'correctDisplay');
+        endScreen.append(enterSomething);
+        setTimeout(function () {
+            document.querySelector('.correctDisplay').remove();
+        }, 1300)
+        return;
+    }
 
     if (highScoresObj[initialsInput.value] === undefined) {
         highScoresObj[(initialsInput.value).toUpperCase()] = score;
@@ -263,7 +294,7 @@ submitButton.addEventListener('click', function (event) {
         }, 4000)
     }
 
-})
+});
 
 goBackButton.addEventListener('click', function (event) {
     event.preventDefault();
@@ -271,7 +302,7 @@ goBackButton.addEventListener('click', function (event) {
 
     toggle(startScreen);
     secondsLeft = 75;
-})
+});
 
 tryAgainButton.addEventListener('click', function (event) {
     event.preventDefault();
@@ -279,7 +310,7 @@ tryAgainButton.addEventListener('click', function (event) {
 
     toggle(startScreen);
     secondsLeft = 75;
-})
+});
 
 clearHighScoresButton.addEventListener('click', function (event) {
     event.preventDefault();
@@ -287,5 +318,5 @@ clearHighScoresButton.addEventListener('click', function (event) {
     localStorage.clear();
     highScoresObj = {}
     toggle(highScores);
-})
+});
 

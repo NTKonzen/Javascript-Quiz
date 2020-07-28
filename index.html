@@ -25,58 +25,104 @@
     </header>
     <main class="container-fluid">
         <div class="row">
-            <div class="col-3 test"></div>
+            <div class="col-3"></div>
+
             <div class="col-6" id='startScreen'>
                 <h2>Coding Quiz Challenge</h2>
-                <p>Try to answer the following questions as quickly and accurately as possible! Click 'Begin Quiz' to
-                    start!</p>
+                <p>Try to answer the following questions as quickly and accurately as possible! Click 'Begin Quiz' to start!</p>
                 <button class="btn" id='startButton'>Begin Quiz</button>
             </div>
+
             <div class="col-6 question" id='questionOneScreen' style='display: none'>
                 <h3>What is one way to declare a variable?</h3>
                 <h5></h5>
-                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. var</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>2. if</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. can</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. then</button>
+                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. Var</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>2. If</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. Can</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. Then</button>
                 <hr>
             </div>
+
             <div class="col-6 question" id='questionTwoScreen' style='display: none'>
                 <h3>What goes inside the parentheses of a function?</h3>
                 <h5>function( _______ )</h5>
-                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. parameters</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>2. if-statements</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. css links</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. dragons</button>
+                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>1. Parameters</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>2. If-statements</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. Css links</button><br>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. Href attributes</button>
                 <hr>
             </div>
+
             <div class="col-6 question" id='questionThreeScreen' style='display: none'>
                 <h3>Array value are container within which notation?</h3>
                 <h5></h5>
                 <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>1. Curly Brackets</button><br>
-                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>2. Square Brackets</button><br>
+                <button class="btn option my-1 correct" onclick='nextQuestion("correct")'>2. Square brackets</button><br>
                 <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>3. Parentheses</button><br>
-                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. Greater Then and Less Then Symbols</button>
+                <button class="btn option my-1 wrong" onclick='nextQuestion("wrong")'>4. Greater than and less than symbols</button>
                 <hr>
             </div>
+
             <div class="col-6 question" id='questionFourScreen' style='display: none'>
                 <h3>Strings are contained within:</h3>
                 <h5>________.</h5>
-                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. spaces</button><br>
-                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. numbers</button><br>
-                <button class="btn option my-1" onclick='nextQuestion("correct")'>3. quotation marks</button><br>
-                <button class="btn option my-1" onclick='nextQuestion("wrong")'>4. brackets</button>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. Spaces</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. Numbers</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("correct")'>3. Quotation marks</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>4. Brackets</button>
                 <hr>
             </div>
+
             <div class="col-6 question" id='questionFourScreen' style='display: none'>
                 <h3>What do you call variables that may contain keys and methods?</h3>
                 <h5></h5>
                 <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. Arrays</button><br>
-                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. constants</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. Constants</button><br>
                 <button class="btn option my-1" onclick='nextQuestion("wrong")'>3. "let"s</button><br>
                 <button class="btn option my-1" onclick='nextQuestion("correct")'>4. Objects</button>
                 <hr>
             </div>
+
+              <div class="col-6 question" id='questionFiveScreen' style='display: none'>
+                <h3>In Javascript, single line comments begin with what?</h3>
+                <h5></h5>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. &lt--</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("correct")'>2. //</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>3. &lt&lt</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>4. ,,,</button>
+                <hr>
+            </div>
+
+            <div class="col-6 question" id='questionSixScreen' style='display: none'>
+                <h3>What fill the following command return?</h3>
+                <h5>parseInt('Hello World')</h5>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. null</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. undefined</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>3. Error</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("correct")'>4. NaN</button>
+                <hr>
+            </div>
+
+            <div class="col-6 question" id='questionSevenScreen' style='display: none'>
+                <h3>In how many days was the first edition of JavaScript written?</h3>
+                <h5>Hint: the first edition of Javascript was known as 'Mocha'</h5>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>1. 3 days</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>2. 30 days</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("wrong")'>3. 45 days</button><br>
+                <button class="btn option my-1" onclick='nextQuestion("correct")'>4. 10 days</button>
+                <hr>
+            </div>
+
+            <div class="col-6 question" id='questionEightScreen' style='display: none'>
+                <h3>What does the method Math.floor(argument) do?</h3>
+                <h5></h5>
+                <button class="btn option my-1 text-left" onclick='nextQuestion("correct")'>1. Rounds the argument downward to its nearest integer</button><br>
+                <button class="btn option my-1 text-left" onclick='nextQuestion("wrong")'>2. If the argument is a number, it converts the argument to 0</button><br>
+                <button class="btn option my-1 text-left" onclick='nextQuestion("wrong")'>3. Rounds the argument upward to its nearest integer</button><br>
+                <button class="btn option my-1 text-left" onclick='nextQuestion("wrong")'>4. Multiplies the argument by 10</button>
+                <hr>
+            </div>
+
             <div class="col-6" id='endScreen' style='display: none'>
                 <h3 class='mb-4'>All done! Thanks for playing!</h3>
                 <form>
@@ -86,13 +132,15 @@
                 </form>
                 <hr>
             </div>
+
             <div class="col-6 text-center" id='gameOverScreen' style='display: none'>
                 <h3 class='mb-4'>Looks like you ran out of time!</h3>
                 <button class='btn mb-1' id='tryAgainButton'>Try again?</button>
                 <hr>
             </div>
+
             <div id='highScores' class='col-6' style='display: none'>
-                <table class='table'>
+                <table class='table mb-0'>
                     <thead>
                         <tr>
                             <th scope='col'>Initials</th>
@@ -101,6 +149,7 @@
                     </thead>
                     <tbody id='highScoresTable'></tbody>
                 </table>
+                <hr class='mt-0'>
                 <button id='goBack' class='btn'>Go Back</button>
                 <button id='clearHighScores' class='btn float-right'>Clear High Scores</button>
             </div>

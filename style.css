@@ -62,6 +62,10 @@ hr {
     border-width: 2px;
 }
 
+#highScores hr {
+    border-width: 1px;
+}
+
 .correctDisplay {
     color: green;
 }
