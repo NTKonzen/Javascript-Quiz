@@ -5,7 +5,8 @@
 
 This javascript quiz was created to test my own javascript skills while at the same time testing my knowledge of javascript trivia. Although I created the quiz for myself, I've made it very easy to change or add questions to the quiz. The quiz works by running you through a series of multiple choice questions while running a countdown from 75 seconds. Your overall score is based on how many seconds you have left once the quiz is completed.
 
-![A screenshot of the start screen](./screenshots/Screen Shot 2020-07-28 at 5.17.05 PM.png)
+![A screenshot of the start screen](./screenshots/screenshot.png)
+[Take the Quiz Here!](https://ntkonzen.github.io/Javascript-Quiz/)
 
 ### How to Play ###
 
